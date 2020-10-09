@@ -1,0 +1,15 @@
+minigames:
+  games:
+    sumo:
+      rewards:
+        - "time set day"
+    redrover:
+      allow-runners-to-hit-each-other: true
+      killer-rewards:
+        - "time set day"
+      runner-rewards:
+        - "time set day"
+    spleef:
+      allow-players-to-hit-each-other: true
+      rewards:
+        - "time set day"

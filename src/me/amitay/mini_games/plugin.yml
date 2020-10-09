@@ -1,0 +1,17 @@
+main: me.amitay.mini_games.MiniGames
+name: MiniGames
+version: 1.0.0
+
+depend: [Multiverse-Core, WorldGuard]
+
+commands:
+  spleef:
+    description: spleef.
+  sumo:
+    description: sumo.
+  redrover:
+    description: redrover.
+  hostgame:
+    description: hostgame.
+  play:
+    description: play.
