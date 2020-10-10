@@ -3,15 +3,18 @@ package me.amitay.mini_games;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import me.amitay.mini_games.commands.HostCommands;
 import me.amitay.mini_games.commands.PlayCommand;
+import me.amitay.mini_games.commands.games_commands.LmsCommands;
 import me.amitay.mini_games.commands.games_commands.RedroverCommands;
 import me.amitay.mini_games.commands.games_commands.SpleefCommands;
 import me.amitay.mini_games.commands.games_commands.SumoCommands;
 import me.amitay.mini_games.config.ConfigManager;
 import me.amitay.mini_games.listeners.BlockBreakListener;
 import me.amitay.mini_games.listeners.PlayerDamagePlayerListener;
+import me.amitay.mini_games.listeners.PlayerDieListener;
 import me.amitay.mini_games.listeners.QuitListener;
 import me.amitay.mini_games.manager.GamesManager;
 import me.amitay.mini_games.manager.SchematicsManager;
+import me.amitay.mini_games.manager.lms.LmsPlayerData;
 import me.amitay.mini_games.manager.redrover.RedroverPlayerData;
 import me.amitay.mini_games.manager.spleef.SpleefPlayerData;
 import me.amitay.mini_games.manager.sumo.SumoPlayerData;
@@ -25,6 +28,7 @@ public class MiniGames extends JavaPlugin {
     private SumoPlayerData sumoPlayerData;
     private RedroverPlayerData redroverPlayerData;
     private SpleefPlayerData spleefPlayerData;
+    private LmsPlayerData lmsPlayerData;
     private WorldGuardPlugin worldGuardPlugin;
     private ConfigManager configManager;
     private SchematicsManager schematicsManager;
@@ -36,6 +40,7 @@ public class MiniGames extends JavaPlugin {
         getCommand("sumo").setExecutor(new SumoCommands(this));
         getCommand("redrover").setExecutor(new RedroverCommands(this));
         getCommand("spleef").setExecutor(new SpleefCommands(this));
+        getCommand("lms").setExecutor(new LmsCommands(this));
         getCommand("play").setExecutor(new PlayCommand(this));
         getCommand("hostgame").setExecutor(new HostCommands(this));
     }
@@ -46,12 +51,13 @@ public class MiniGames extends JavaPlugin {
         sumoPlayerData = new SumoPlayerData(this);
         redroverPlayerData = new RedroverPlayerData(this);
         spleefPlayerData = new SpleefPlayerData(this);
+        lmsPlayerData = new LmsPlayerData(this);
     }
     private void loadEvents() {
         getServer().getPluginManager().registerEvents(new QuitListener(this), this);
         getServer().getPluginManager().registerEvents(new BlockBreakListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerDamagePlayerListener(this), this);
-        //getServer().getPluginManager().registerEvents(new ParkourCommand(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerDieListener(this), this);
         //getServer().getPluginManager().registerEvents(new PlayerInteractListener(this), this);
         //getServer().getPluginManager().registerEvents(new CommandListener(this), this);
     }
@@ -90,5 +96,8 @@ public class MiniGames extends JavaPlugin {
 
     public SpleefPlayerData getSpleefPlayerData() {
         return spleefPlayerData;
+    }
+    public LmsPlayerData getLmsPlayerData(){
+        return lmsPlayerData;
     }
 }

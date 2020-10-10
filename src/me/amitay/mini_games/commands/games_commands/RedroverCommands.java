@@ -92,7 +92,7 @@ public class RedroverCommands implements CommandExecutor {
         if (args.length == 3){
             if (args[0].equalsIgnoreCase("set")){
                 if (args[1].equalsIgnoreCase("minplayers")){
-                    if (!isInteger(args[2])){
+                    if (!Utils.isInteger(args[2])){
                         p.sendMessage(Utils.getFormattedText("&cThe minimum players value must be an integer."));
                         return true;
                     }
@@ -102,7 +102,7 @@ public class RedroverCommands implements CommandExecutor {
                     return true;
                 }
                 if (args[1].equalsIgnoreCase("maxplayers")){
-                    if (!isInteger(args[2])){
+                    if (!Utils.isInteger(args[2])){
                         p.sendMessage(Utils.getFormattedText("&cThe maximum players value must be an integer."));
                         return true;
                     }
@@ -112,7 +112,7 @@ public class RedroverCommands implements CommandExecutor {
                     return true;
                 }
                 if (args[1].equalsIgnoreCase("timetostart")){
-                    if (!isInteger(args[2])){
+                    if (!Utils.isInteger(args[2])){
                         p.sendMessage(Utils.getFormattedText("&cThe time to start value must be an integer."));
                         return true;
                     }
@@ -122,7 +122,7 @@ public class RedroverCommands implements CommandExecutor {
                     return true;
                 }
                 if (args[1].equalsIgnoreCase("timetorun")){
-                    if (!isInteger(args[2])){
+                    if (!Utils.isInteger(args[2])){
                         p.sendMessage(Utils.getFormattedText("&cThe time to run value must be an integer."));
                         return true;
                     }
@@ -150,16 +150,6 @@ public class RedroverCommands implements CommandExecutor {
             return true;
         }
         p.sendMessage(Utils.getFormattedText("&aRedrover help menu"));
-        return true;
-    }
-    private boolean isInteger(String s) {
-        try {
-            Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            return false;
-        } catch (NullPointerException e) {
-            return false;
-        }
         return true;
     }
 }

@@ -61,6 +61,17 @@ public class HostCommands implements CommandExecutor {
                     return true;
                 }
             }
+            if (args[0].toLowerCase().equalsIgnoreCase("lms")){
+                if (!p.hasPermission("minigames.host.lms")){
+                    p.sendMessage(Utils.getFormattedText("&cYou don't have the permissions to host this event"));
+                    return true;
+                }
+                if (pl.gamesManager.getGamemodes().containsKey(Gamemode.LMS)) {
+                    pl.gamesManager.startGame(Gamemode.LMS);
+                    p.sendMessage(Utils.getFormattedText("&eYou have successfully started a lms game!"));
+                    return true;
+                }
+            }
         }
         return false;
     }

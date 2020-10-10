@@ -1,6 +1,7 @@
 package me.amitay.mini_games.manager;
 
 import me.amitay.mini_games.MiniGames;
+import me.amitay.mini_games.manager.lms.Lms;
 import me.amitay.mini_games.manager.redrover.Redrover;
 import me.amitay.mini_games.manager.spleef.Spleef;
 import me.amitay.mini_games.manager.sumo.Sumo;
@@ -22,12 +23,15 @@ public class GamesManager {
         Sumo sumo = new Sumo(pl);
         Redrover redrover = new Redrover(pl);
         Spleef spleef = new Spleef(pl);
+        Lms lms = new Lms(pl);
         if (sumo.getinfo())
             gamemodes.put(Gamemode.SUMO, new Sumo(pl));
         if (redrover.isInfo())
             gamemodes.put(Gamemode.REDROVER, new Redrover(pl));
         if (spleef.isInfo())
             gamemodes.put(Gamemode.SPLEEF, new Spleef(pl));
+        if (lms.isInfo())
+            gamemodes.put(Gamemode.LMS, new Lms(pl));
     }
 
     public void startGame(Gamemode game) {
@@ -43,6 +47,10 @@ public class GamesManager {
             if (game == Gamemode.SPLEEF) {
                 Spleef spleef = (Spleef) gamemodes.get(game);
                 spleef.startCountDown();
+            }
+            if (game == Gamemode.LMS){
+                Lms lms = (Lms) gamemodes.get(game);
+                lms.startCountDown();
             }
         }
     }
@@ -65,5 +73,9 @@ public class GamesManager {
 
     public Spleef getSpleefGame() {
         return (Spleef) gamemodes.get(Gamemode.SPLEEF);
+    }
+
+    public Lms getLmsGame() {
+        return (Lms) gamemodes.get(Gamemode.LMS);
     }
 }

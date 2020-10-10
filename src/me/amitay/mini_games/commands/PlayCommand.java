@@ -1,6 +1,7 @@
 package me.amitay.mini_games.commands;
 
 import me.amitay.mini_games.MiniGames;
+import me.amitay.mini_games.manager.lms.Lms;
 import me.amitay.mini_games.manager.redrover.Redrover;
 import me.amitay.mini_games.manager.spleef.Spleef;
 import me.amitay.mini_games.manager.sumo.Sumo;
@@ -87,6 +88,20 @@ public class PlayCommand implements CommandExecutor {
                 if (spleef.enoughSpace()) {
                     spleef.addToList(p);
                     p.sendMessage(Utils.getFormattedText("&eYou were successfully added to the spleef game, good luck!"));
+                    return true;
+                }
+                p.sendMessage(Utils.getFormattedText("&eThis game is already full."));
+                return true;
+            }
+            if (args[0].toLowerCase().equalsIgnoreCase("lms")){
+                Lms lms = pl.gamesManager.getLmsGame();
+                if (!lms.getStatus()){
+                    p.sendMessage(Utils.getFormattedText("&eThis minigame has never started or it is already running"));
+                    return true;
+                }
+                if (lms.enoughSpace()) {
+                    lms.addToList(p);
+                    p.sendMessage(Utils.getFormattedText("&eYou were successfully added to the lms game, good luck!"));
                     return true;
                 }
                 p.sendMessage(Utils.getFormattedText("&eThis game is already full."));

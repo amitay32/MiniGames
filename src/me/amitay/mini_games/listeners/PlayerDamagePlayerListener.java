@@ -48,6 +48,10 @@ public class PlayerDamagePlayerListener implements Listener {
                     return;
                 }
             }
+            if (pl.gamesManager.getLmsGame().currentlyRunning())
+                if(pl.getLmsPlayerData().getAlive().contains(e.getDamager()) && pl.getLmsPlayerData().getAlive().contains(e.getEntity())){
+                    return;
+                }
             e.setCancelled(true);
         }
     }

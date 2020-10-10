@@ -11,6 +11,8 @@ commands:
     description: sumo.
   redrover:
     description: redrover.
+  lms:
+    description: lms.
   hostgame:
     description: hostgame.
   play:
