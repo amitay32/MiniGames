@@ -1,0 +1,32 @@
+minigames:
+  available_commands_while_in_game: #A list of commands that a player can execute while in a game.
+    - "msg"
+    - "r"
+    - "tell"
+  games:
+    sumo:
+      rewards:
+        - "time set day"
+    redrover:
+      allow-runners-to-hit-each-other: true
+      killer-rewards: #The rewards the killers will get.
+        - "time set day"
+      runner-rewards: #The rewards the runners will get.
+        - "time set day"
+      time-to-run: 15 #The time players have to run from side to side.
+    spleef:
+      allow-players-to-hit-each-other: true #Can players hit each other in the event.
+      rewards:
+        - "time set day"
+    lms:
+      rewards: #A set commands that will happened when the player wins the event.
+        - "time set day"
+      max-play-time: 10 #Time in minutes untill the game ends if there isn't one man standing.
+      heal-on-kill: 20 #The amount of hp a player will get when he kill another player.
+      on-kill-commands: #A set of commands that will happened to a player when he kills another player. use %player% as a place holder.
+        - "time set night"
+    waterdrop:
+      rewards:
+        - "time set day"
+      y-level: 15 #The y level a player must be on to pass to the next level.
+      max-play-time : 10 #Time in minutes untill the game ends if there isn't any winner.
